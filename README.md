@@ -19,7 +19,7 @@ npm install
 npm run start
 ~~~
 
-打包
+启动压缩版本的服务器
 
 ~~~
 npm run serve:dist
