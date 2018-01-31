@@ -4,7 +4,7 @@ one photo gallery project based on react.
 下载项目到本地 
 
 ~~~
-git clone 
+git clone https://github.com/liutaochange/gallery-react.git
 ~~~
 
 安装项目依赖
