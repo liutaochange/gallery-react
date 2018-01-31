@@ -24,3 +24,18 @@ npm run start
 ~~~
 npm run serve:dist
 ~~~
+ 
+运行单元测试
+~~~
+npm test
+~~~
+ 
+检测代码格式
+~~~
+npm run lint
+~~~
+ 
+清空dist目录
+~~~
+npm run clean
+~~~
