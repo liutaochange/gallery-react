@@ -22,7 +22,7 @@ class ImgFigure extends React.Component{
     if(this.props.arrange.isCenter){
       this.props.inverse();
     }else{
-      this.props.livecenter()
+      this.props.livecenter();
     }
   }
   render() {
@@ -58,6 +58,36 @@ class ImgFigure extends React.Component{
     )
   }
 }
+
+//控制模块
+class Controller extends React.Component{
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.livecenter();
+    }
+  }
+  render() {
+    var controllerClassName = 'controller-item';
+    if(this.props.arrange.isCenter){
+      controllerClassName += ' is-center';
+      if(this.props.arrange.isInverse){
+        controllerClassName += ' is-inverse';
+      }
+    }
+    return (
+      <span className={controllerClassName} onClick={this.handleClick}></span>
+    )
+  }
+}
+
 
 /* 获取两者之间的随机数
 * @param index 指定居中的图片
@@ -173,7 +203,7 @@ class AppComponent extends React.Component {
     vPosRangeTopY = vPosRange.topY,
     vPosRangeX = vPosRange.x,
     imgsTopArr = [],
-    topImgNum = Math.ceil(Math.random() * 2),
+    topImgNum = Math.floor(Math.random() * 2),
     topImgIndex = 0,
     imgsCenterArr = imgsArr.splice(index,1);
     //居中的图片
@@ -239,13 +269,14 @@ class AppComponent extends React.Component {
         }
       }
       ImgFigures.push(<ImgFigure data={element} ref={'imgfig'+index} key={index} arrange={this.state.imgsArr[index]} inverse={this.inverse(index)} livecenter={this.livecenter(index)}/>);
+      controllerUnits.push(<Controller key={index} arrange={this.state.imgsArr[index]} inverse={this.inverse(index)} livecenter={this.livecenter(index)}/>);
     }.bind(this));
     return (
      <section className="stage" ref='stage'>
       <section className="img-sec">
         {ImgFigures}
       </section>
-      <nav className="controller-mav">
+      <nav className="controller-nav">
         {controllerUnits}
       </nav>
      </section>
