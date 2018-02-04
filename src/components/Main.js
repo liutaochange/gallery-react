@@ -12,11 +12,24 @@ imgData.forEach(element => {
 
 //img模块
 class ImgFigure extends React.Component{
-  render(){
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.livecenter()
+    }
+  }
+  render() {
     var styleObj = {};
     //如果props指定了pos属性，就直接使用
     if (this.props.arrange.pos) {
-      styleObj = this.props.arrange.pos
+      styleObj = this.props.arrange.pos;
     }
     //如果props指定了rotate属性，就直接使用
     if (this.props.arrange.rotate) {
@@ -25,12 +38,21 @@ class ImgFigure extends React.Component{
         styleObj[ele + 'Transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
       }.bind(this));
     }
-    //styleObj['transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
+    if (this.props.arrange.isCenter) {
+      styleObj.zIndex = 11;
+    }
+    var imgFigureClassName = 'img-wamp';
+    imgFigureClassName += this.props.arrange.isInverse ? ' is_inverse' : '';
     return(
-      <figure className="img-wamp" style={styleObj}>
+      <figure className={imgFigureClassName} style={styleObj} onClick={this.handleClick}>
         <img src={this.props.data.singleUrl} alt={this.props.data.title} className="img-item"/>
         <figcaption>
           <h3 className="img-title">{this.props.data.title}</h3>
+          <div className="img-back" onClick={this.handleClick}>
+            <p className="img-word" dangerouslySetInnerHTML={{__html:this.props.data.desc}}>
+              
+            </p>
+          </div>
         </figcaption>
       </figure>
     )
@@ -59,7 +81,8 @@ class AppComponent extends React.Component {
             left: 0
           },
           rotate: 0,  //旋转角度
-          isInverse: false   //图片是否反转
+          isInverse: false,   //图片是否反转
+          isCenter: false
         }
       ],
       Constant: {
@@ -79,8 +102,25 @@ class AppComponent extends React.Component {
       }
     }
   }
-  //定义基本变量
-  
+   /* 翻转图片
+  * @param index 输入当前需要翻转图片的索引index值
+  */
+  inverse(index){
+    return function(){
+      var imgsArr = this.state.imgsArr;
+      imgsArr[index].isInverse = !imgsArr[index].isInverse;
+      this.setState({
+        imgsArr: imgsArr
+      });
+    }.bind(this)
+  }
+
+  livecenter(index){
+    return function(){
+      this.rearrange(index);
+    }.bind(this);
+  }
+
   //组件加载后执行
   componentDidMount() {
     //获取舞台的大小
@@ -140,6 +180,7 @@ class AppComponent extends React.Component {
     imgsCenterArr[0].pos = center;
     //居中的图片不需要旋转
     imgsCenterArr[0].rotate = 0;
+    imgsCenterArr[0].isCenter = true;
     //取出上侧的图片状态信息
     topImgIndex = Math.ceil(Math.random() * (imgsArr.length - topImgNum));
     imgsTopArr = imgsArr.splice(topImgIndex,topImgNum);
@@ -150,6 +191,7 @@ class AppComponent extends React.Component {
         left: getRandom(vPosRangeX[0],vPosRangeX[1])
       });
       item.rotate = getRandomRotate();
+      item.isCenter = false;
     })
     //布局左右两侧的图片
     var leftOrRightSize = imgsArr.length;
@@ -166,6 +208,7 @@ class AppComponent extends React.Component {
         left: getRandom(LeftOrRightImg[0],LeftOrRightImg[1])
       });
       ele.rotate = getRandomRotate();
+      ele.isCenter = false;
     })
 
     if(imgsTopArr && imgsTopArr[0]){
@@ -191,10 +234,11 @@ class AppComponent extends React.Component {
             top: 0,
             left: 0
           },
-          rotate: 0
+          rotate: 0,
+          isInverse: false
         }
       }
-      ImgFigures.push(<ImgFigure data={element} ref={'imgfig'+index} key={index} arrange={this.state.imgsArr[index]}/>);
+      ImgFigures.push(<ImgFigure data={element} ref={'imgfig'+index} key={index} arrange={this.state.imgsArr[index]} inverse={this.inverse(index)} livecenter={this.livecenter(index)}/>);
     }.bind(this));
     return (
      <section className="stage" ref='stage'>

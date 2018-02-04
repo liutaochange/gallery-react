@@ -21,6 +21,7 @@ html,body{
   position: relative;
   width: 100%;
   height: 100%;
+  perspective: 1800px;
   @at-root .img-wamp{
     position: absolute;
     width: 190px;
@@ -28,19 +29,46 @@ html,body{
     padding: 20px;
     background: #fff;
     box-sizing: border-box;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform .6s ease-in-out, left .6s ease-in-out, top .6s ease-in-out;
+    &.is_inverse{
+      transform: rotateY(180deg);
+    }
     .img-item{
       width: 150px;
       height: 200px;
       display: block;
       margin: 0 auto;
     }
-    .img-title{
-      width: 100%;
-      text-align: center;
-      height: 20px;
-      line-height: 20px;
-      font-size: 14px;
-      color: #a7a0a2;
+
+    figcaption{
+      .img-title{
+        width: 100%;
+        text-align: center;
+        height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+        color: #a7a0a2;
+      }
+      .img-back{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        padding: 20px;
+        box-sizing: border-box;
+        transform: rotateY(180deg) translateZ(1px);
+        backface-visibility: hidden;
+        .img-word{
+          font-size: 14px;
+          line-height: 1.5;
+          color: #a7a0a2;
+          text-align: left;
+        }
+      }
     }
   }
 }
