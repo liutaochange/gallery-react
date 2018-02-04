@@ -1,7 +1,8 @@
-# gallery-react
 one photo gallery project based on react.
 
-一个React构建的图片画廊应用,在线访问：[]()
+![](https://s1.ax2x.com/2018/02/04/h7SLn.png)
+
+一个React构建的图片画廊应用,在线访问：[https://liutaochange.github.io/gallery-react](https://liutaochange.github.io/gallery-react)
 
 ## 项目说明
 
@@ -112,6 +113,7 @@ getInitialState: function(){
 
 # ES6
 constructor(props) {
+  super(props);
   this.state = {
     name: 'ck'
   }
@@ -120,12 +122,12 @@ constructor(props) {
 箭头函数
 ```shell
 # ES5
-Var getRangeRandom = function(low, high) {
-  return Math.floor(Math.random() * (high - low) + low);
+function getRandom(min,max){
+  return Math.ceil(Math.random() * (max - min) + min);
 }
 
 # ES6
-let getRangeRandom = (low, high) =>  Math.floor(Math.random() * (high - low) + low );
+let getRandom = (min,max) =>  Math.floor(Math.random() * (max - min) + min);
 ```
 
 

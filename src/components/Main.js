@@ -92,9 +92,7 @@ class Controller extends React.Component{
 /* 获取两者之间的随机数
 * @param index 指定居中的图片
 */
-function getRandom(min,max){
-  return Math.ceil(Math.random() * (max - min) + min)
-}
+let getRandom = (min,max) =>  Math.floor(Math.random() * (max - min) + min);
 /* 获取0到30度之间的任意正负值
 */
 function getRandomRotate(){
