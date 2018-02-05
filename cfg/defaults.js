@@ -9,7 +9,6 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
-console.log(process.env)
 
 /**
  * Get the default modules object for webpack
@@ -46,8 +45,12 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!stylus-loader'
       },
       {
-        test: /\.(png|jpg|gif|woff|woff2|eot|ttf)$/,
+        test: /\.(woff|woff2|eot|ttf)$/,
         loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.(png|jpg|gif|)$/,
+        loader: 'url-loader?limit=8192&name=../assets/[name].[ext]'
       },
       {
         test: /\.(mp4|ogg|svg)$/,
@@ -60,13 +63,12 @@ function getDefaultModules() {
     ]
   };
 }
-
+console.log(process.env.REACT_WEBPACK_ENV);
+var publicPath = process.env.REACT_WEBPACK_ENV == 'dist'? '/assets/' : '/assets/';
 module.exports = {
   srcPath: srcPath,
   //publicPath: '/assets/',
-  publicPath:process.env.REACT_WEBPACK_ENV === 'dist'
-  ? './assets/'
-  : '/assets/',
+  publicPath: publicPath,
   port: dfltPort,
   getDefaultModules: getDefaultModules
 };

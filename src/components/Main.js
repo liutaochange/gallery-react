@@ -50,7 +50,7 @@ class ImgFigure extends React.Component{
           <h3 className="img-title">{this.props.data.title}</h3>
           <div className="img-back" onClick={this.handleClick}>
             <p className="img-word" dangerouslySetInnerHTML={{__html:this.props.data.desc}}>
-              
+
             </p>
           </div>
         </figcaption>
@@ -244,7 +244,7 @@ class AppComponent extends React.Component {
     }
 
     imgsArr.splice(index,0,imgsCenterArr[0]);
-    
+
     this.setState({
       imgsArr: imgsArr
     });
