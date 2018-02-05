@@ -63,8 +63,7 @@ function getDefaultModules() {
     ]
   };
 }
-console.log(process.env.REACT_WEBPACK_ENV);
-var publicPath = process.env.REACT_WEBPACK_ENV == 'dist'? '/assets/' : '/assets/';
+var publicPath = process.env.REACT_WEBPACK_ENV == 'prd'? '/assets/' : '/assets/';
 module.exports = {
   srcPath: srcPath,
   publicPath: publicPath,
