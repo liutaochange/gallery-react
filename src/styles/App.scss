@@ -30,8 +30,8 @@ html,body{
   perspective: 1800px;
   @at-root .img-wamp{
     position: absolute;
-    width: 190px;
-    height: 260px;
+    width: 250px;
+    height: 340px;
     padding: 20px;
     background: #fff;
     box-sizing: border-box;
@@ -42,8 +42,8 @@ html,body{
       transform: rotateY(180deg);
     }
     .img-item{
-      width: 150px;
-      height: 200px;
+      width: 210px;
+      height: 280px;
       display: block;
       margin: 0 auto;
     }
