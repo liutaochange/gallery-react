@@ -1,13 +1,15 @@
+### gallery-react
+
 one photo gallery project based on react.
 
 ![](https://s1.ax2x.com/2018/02/04/h7SLn.png)
 
 一个React构建的图片画廊应用,在线访问：[https://liutaochange.github.io/gallery-react](https://liutaochange.github.io/gallery-react)
 
-## 项目说明
+### 项目说明
 
-- 本项目是参考视频教程编写，教程地址 [React实战--打造画廊应用](http://www.imooc.com/learn/507)
-- 教程讲师的项目的Github地址 [materliu/gallery-by-react](https://github.com/materliu/gallery-by-react)
+- 本项目是参考视频教程编写的一个入门项目，教程地址 [React实战--打造画廊应用](http://www.imooc.com/learn/507)
+- 教程讲师的Github地址 [materliu](https://github.com/materliu/)
 - 项目构建的脚手架使用的是 [generator-react-webpack](https://github.com/react-webpack-generators/generator-react-webpack)
 - 视频教程中使用的是ES5语法，本项目使用ES6语法，所以会有不同
 
@@ -39,7 +41,7 @@ npm run serve:dist
 
 更多命令请参考 **package.json** 文件, 从头构建项目可以参考视频教程
 
-## 目录说明
+### 目录说明
 ```shell
 .
 ├── /cfg/                       # webpack配置文件存放目录
@@ -56,7 +58,7 @@ npm run serve:dist
 │   ├── /config/                # 配置目录（没用到）
 │   ├── /sources/               # flux datasources目录（没用到）
 │   ├── /stores/                # flux stores(没用到)
-│   ├── /styles/                # 样式文件目录，内有一个App.css基础css文件
+│   ├── /styles/                # 样式文件目录，内有一个App.scss基础scss文件和fonts目录下的字体文件
 │   ├── index.html              # 项目入口文件
 │   └── index.js                # js入口文件
 ├── /test/                      # 单元测试和集成测试目录
@@ -72,7 +74,7 @@ npm run serve:dist
 └── webpack.config.js           # webpack配置文件，不同环境的配置项在cfg目录下
 ```
 
-## 部分扇区示意图
+### 部分扇区示意图
 ```
                           |------上扇区线-----|
                           |         |         |
@@ -93,7 +95,7 @@ npm run serve:dist
                                    中轴线
 ```
 
-## ES5和ES6写法的不同点
+### ES5和ES6写法的不同点
 创建组件
 ```shell
 # ES5
@@ -131,7 +133,7 @@ let getRandom = (min,max) =>  Math.floor(Math.random() * (max - min) + min);
 ```
 
 
-## Git命令说明
+### Git命令说明
 ```shell
 # 查看更改的文件
 git satus
