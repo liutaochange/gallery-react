@@ -50,7 +50,7 @@ function getDefaultModules() {
       },
       {
         test: /\.(png|jpg|gif|)$/,
-        loader: 'url-loader?limit=8192&name=./[name].[ext]'
+        loader: 'url-loader?limit=8192'
       },
       {
         test: /\.(mp4|ogg|svg)$/,
@@ -67,7 +67,6 @@ console.log(process.env.REACT_WEBPACK_ENV);
 var publicPath = process.env.REACT_WEBPACK_ENV == 'dist'? '/assets/' : '/assets/';
 module.exports = {
   srcPath: srcPath,
-  //publicPath: '/assets/',
   publicPath: publicPath,
   port: dfltPort,
   getDefaultModules: getDefaultModules
