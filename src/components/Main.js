@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 //获取图片相关的数据
 var imgData = require('../data/imgdata.json');
 imgData.forEach(element => {
-  element.singleUrl = require('../images/'+element.file_name)
+  element.singleUrl = require('images/'+element.file_name)
 });
 
 //img模块
